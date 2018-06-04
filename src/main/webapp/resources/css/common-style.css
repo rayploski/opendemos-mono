@@ -1,13 +1,11 @@
 .centered-text {
     text-align: center
 }
-}
 
 .menu-en {
     background: transparent url("#{resource['icons/us.gif']}") no-repeat center left;
     padding: 5px 5px 5px 20px;
 }
-
 
 .user-edit {
     background: transparent url("#{resource['icons/user_edit.png']}") no-repeat center left;
@@ -17,6 +15,48 @@
 .arrow_refresh {
     background: transparent url("#{resource['icons/arrow_refresh.png']}") no-repeat center left;
     padding: 5px 5px 5px 20px;
+}
+
+.rh-terrace {
+  background: url("/resources/images/epic-terrace-fields-blue.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.rh-clouds {
+  background: url("/resources/images/epic-mountains-red.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.rh-ceiling {
+  background: url("/resources/images/ceiling_bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.rh-bridge {
+  background: url("/resources/images/epic-footpath-bridge-red.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.rh-overpass {
+  background: url("/resources/images/epic-intermission-overpass-bridge-blue.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .rh-nav-universal {
@@ -51,6 +91,17 @@
     transition: ease-in-out color .15s;
   }
   .site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .site-card a {
+    color: #999;
+    transition: ease-in-out color .15s;
+  }
+ 
+  .site-card a:hover {
+
     color: #fff;
     text-decoration: none;
   }
