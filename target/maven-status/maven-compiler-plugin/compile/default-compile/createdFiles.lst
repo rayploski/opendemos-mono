@@ -1,0 +1,12 @@
+com/redhat/opendemos/model/Product.class
+com/redhat/opendemos/data/PresenterListProducer.class
+com/redhat/opendemos/service/PresenterRegistration.class
+com/redhat/opendemos/data/PresenterRepository.class
+com/redhat/opendemos/data/ProductListProducer.class
+com/redhat/opendemos/service/ProductRegistration.class
+com/redhat/opendemos/service/SessionRegistration.class
+com/redhat/opendemos/model/Reminder.class
+com/redhat/opendemos/model/Session.class
+com/redhat/opendemos/util/Resources.class
+com/redhat/opendemos/model/Presenter.class
+com/redhat/opendemos/data/ProductRepository.class
