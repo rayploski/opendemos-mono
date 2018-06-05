@@ -8,9 +8,8 @@
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 template="resources/template/common/commonLayout.xhtml">
     <ui:param name="pageTitle" value="Red Hat Open Demos"/>
-    <ui:define name="main">
-              
-        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light rh-terrace text-white">
+    <ui:define name="main">             
+       <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left bg-light rh-terrace text-white">
             <div class="col-md-5 p-lg-5 mx-auto my-5">
                 <h1 class="display-4 font-weight-normal">Frequently Asked Questions</h1>
                 <p class="lead font-weight-normal">Welcome to the place to review Red Hat technologies and jumpstart 
@@ -18,17 +17,18 @@
                 </p>
             </div>
         </div>
+        
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-left ">    
+            <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="default.xhtml">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                    <li class="breadcrumb-item"><a href="past.xhrml">Previous Sessions</a></li>
+                    <li class="breadcrumb-item"><a href="future.xhtml">Upcoming Sessions</a></li>
+                    <li class="breadcrumb-item"><a href="feedback.xhtml">Get Involved</a></li>
+                    </ol>
+            </nav>
 
-        <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="default.xhtml">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">FAQ</li>
-                  <li class="breadcrumb-item"><a href="past.xhrml">Previous Sessions</a></li>
-                  <li class="breadcrumb-item"><a href="future.xhtml">Upcoming Sessions</a></li>
-                  <li class="breadcrumb-item"><a href="feedback.xhtml">Get Involved</a></li>
-                </ol>
-        </nav>
             <div class="alert alert-primary">
                     <h3>Who is allowed to attend these demos?</h3>
                     <hr/>
@@ -42,22 +42,22 @@
             </div>
 
             <div class="alert alert-primary">
-            <h3>Why not simply record a singular session and pass it to customers as a recorded presentation instead of doing a similar demo each week?</h3>
-            <hr/>
-            <p>We have tried this in the past and people still request that live demo. By having an interactive presence on the call, customers receive the attention that they need while also gaining the ability to ask questions and steer the direction of the presentation based on live feedback.</p>
+                <h3>Why not simply record a singular session and pass it to customers as a recorded presentation instead of doing a similar demo each week?</h3>
+                <hr/>
+                <p>We have tried this in the past and people still request that live demo. By having an interactive presence on the call, customers receive the attention that they need while also gaining the ability to ask questions and steer the direction of the presentation based on live feedback.</p>
             </div>
 
             <div class="alert alert-secondary">
-            <h3>The demo is over, now what?</h3>
-            <hr/>
-            <p>If you have additional questions, please contact your account manager or Solution Architect. If you do not know, feel free to email the presenter and they can help you.</p>
+                <h3>The demo is over, now what?</h3>
+                <hr/>
+                <p>If you have additional questions, please contact your account manager or Solution Architect. If you do not know, feel free to email the presenter and they can help you.</p>
             </div>
 
             <div class="alert alert-primary">
-            <h3>What does TBA mean?</h3>
-            <hr/>
-            <p>TBA = To Be Announced. There is currently no assigned person to present on that date yet.</p>
+                <h3>What does TBA mean?</h3>
+                <hr/>
+                <p>TBA = To Be Announced. There is currently no assigned person to present on that date yet.</p>
             </div>
-        </div>
-    </ui:define>
+    </div>
+</ui:define>
 </ui:composition>
