@@ -31,6 +31,9 @@
         [WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
         -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.javaee>7.0</version.javaee>
+        <version.jboss-javaee>1.1.0.Final</version.jboss-javaee>
+    
     </properties>
 
 
@@ -122,6 +125,13 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-7.0</artifactId>
+                <version>${version.jboss-javaee}</version>
+                <type>pom</type>
+                <scope>provided</scope>
+          </dependency>
 
             <!-- Recommended JUnit version -->
             <!-- Note that JUnit is preferred framework -->
@@ -151,6 +161,13 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-7.0</artifactId>
+            <type>pom</type>
             <scope>provided</scope>
         </dependency>
 
