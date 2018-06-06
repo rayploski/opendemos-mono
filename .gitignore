@@ -32,3 +32,5 @@ teamworkUser.xml
 projectFilesBackup*
 *.zip
 *.gzprojectFilesBackup*
+.settings
+.project
