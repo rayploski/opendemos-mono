@@ -1,13 +1,11 @@
 package com.redhat.opendemos.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.*;
 
 @Entity
 @XmlRootElement
@@ -24,6 +22,20 @@ public class Session implements Serializable {
 
     @Size(max = 4096)
     private String description;
+
+    @Temporal(value=TemporalType.DATE)
+    private Date sessionDate;
+
+    @Temporal(value = TemporalType.TIME)
+    private Date sessionTime;
+
+    @ManyToMany
+    @JoinTable (name="session_product")
+    private Set<Product> products = new HashSet<Product>();
+
+    @ManyToMany
+    @JoinTable (name="session_presenters")
+    private Set<Presenter> presenters = new HashSet<Presenter>();
 
     public Long getId() {
         return id;
@@ -47,5 +59,42 @@ public class Session implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public Set<Product> getProducts(){return this.products;}
+
+    public Date getSessionDate() {
+        return sessionDate;
+    }
+
+    public void setSessionDate(Date sessionDate) {
+        this.sessionDate = sessionDate;
+    }
+
+    public Date getSessionTime() {
+        return sessionTime;
+    }
+
+    public void setSessionTime(Date sessionTime) {
+        this.sessionTime = sessionTime;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Set<Presenter> getPresenters() {
+        return presenters;
+    }
+
+    public void setPresenters(Set<Presenter> presenters) {
+        this.presenters = presenters;
+    }
+
+    public List<Product> getProductList(){
+    	return new ArrayList<Product>(this.products);
+    }
+    
+    public List<Presenter>getPresenterList(){
+    	return new ArrayList<Presenter>(this.presenters);
     }
 }

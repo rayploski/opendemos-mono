@@ -3,6 +3,8 @@ package com.redhat.opendemos.service;
 import com.redhat.opendemos.model.*;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -14,7 +16,8 @@ import com.redhat.opendemos.util.Loggable;
 @Stateless
 @LocalBean
 @Loggable
-public class ProductService extends AbstractService<Product> implements Serializable
+public class
+ProductService extends AbstractService<Product> implements Serializable
 {
 
     @Inject

@@ -7,12 +7,22 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Set;
 
 
 @Entity
 @XmlRootElement
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"), name = "products")
 public class Product implements Serializable {
+
+
+    public Product (){
+
+    }
+
+    public Product(String name){
+        this.name = name;
+    }
 
 
     @Id
@@ -28,6 +38,9 @@ public class Product implements Serializable {
 
     @URL
     private String url;
+
+    @ManyToMany (mappedBy = "products")
+    private Set<Session> sessions;
 
     public Long getId() {
         return id;
@@ -60,4 +73,8 @@ public class Product implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public Set<Session> getSessions() { return sessions;}
+
+    public void setSessions(Set<Session> sessions) { this.sessions = sessions;}
 }
