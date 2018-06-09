@@ -10,6 +10,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.swing.plaf.metal.MetalBorders;
 import java.io.Serializable;
+import java.rmi.registry.LocateRegistry;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -25,8 +28,6 @@ public class TheBusiness implements Serializable {
     private String message = "Hello OpenDemos";
 
     private List<Session> sessions = new ArrayList<Session>();
-
-
 
     public List<Session> getSessions() {
         return sessions;
@@ -58,6 +59,7 @@ public class TheBusiness implements Serializable {
         Product rhev = new Product();
         rhev.setName("RHEV");
         s.getProducts().add(rhev);
+        s.setSessionDate(LocalDate.of(2018,06,05));
         sessions.add(s);
 
         Session s2 = new Session();
@@ -67,6 +69,7 @@ public class TheBusiness implements Serializable {
         Product cloudForms = new Product();
         cloudForms.setName("CloudForms");
         s2.getProducts().add(cloudForms);
+        s2.setSessionDate(LocalDate.of(2018,06,07));
         sessions.add(s2);
 
 
@@ -77,6 +80,7 @@ public class TheBusiness implements Serializable {
         Product sat = new Product();
         sat.setName("Satellite 6.x");
         s.getProducts().add(sat);
+        s.setSessionDate(LocalDate.of(2018, 06, 12));
         sessions.add(s);
 
 
@@ -97,6 +101,9 @@ public class TheBusiness implements Serializable {
         s.getProducts().add(rhoar);
         s.getProducts().add(eap);
         s.getProducts().add(ocp);
+        s.setSessionDate(LocalDate.of(2018, 06, 14));
+        s.setSessionTime(LocalTime.of(15,00));
+
         sessions.add(s);
 
     }

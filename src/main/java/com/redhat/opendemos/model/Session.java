@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.time.*;
+import java.time.format.*;
 import java.util.*;
 
 @Entity
@@ -20,14 +22,15 @@ public class Session implements Serializable {
     @Size(min = 10, max = 512)
     private String title;
 
+    @Column(name = "session_desc")
     @Size(max = 4096)
     private String description;
 
-    @Temporal(value=TemporalType.DATE)
-    private Date sessionDate;
+    @Column (name = "session_date")
+    private LocalDate sessionDate;
 
-    @Temporal(value = TemporalType.TIME)
-    private Date sessionTime;
+    @Column (name = "session_time")
+    private LocalTime sessionTime;
 
     @ManyToMany
     @JoinTable (name="session_product")
@@ -62,19 +65,19 @@ public class Session implements Serializable {
     }
     public Set<Product> getProducts(){return this.products;}
 
-    public Date getSessionDate() {
+    public LocalDate getSessionDate() {
         return sessionDate;
     }
 
-    public void setSessionDate(Date sessionDate) {
+    public void setSessionDate(LocalDate sessionDate) {
         this.sessionDate = sessionDate;
     }
 
-    public Date getSessionTime() {
+    public LocalTime getSessionTime() {
         return sessionTime;
     }
 
-    public void setSessionTime(Date sessionTime) {
+    public void setSessionTime(LocalTime sessionTime) {
         this.sessionTime = sessionTime;
     }
 
@@ -96,5 +99,16 @@ public class Session implements Serializable {
     
     public List<Presenter>getPresenterList(){
     	return new ArrayList<Presenter>(this.presenters);
+    }
+
+    public String getSessionDateStr(){
+        return sessionDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+    }
+
+    public String getSessionTimeStr(){
+        if (sessionTime != null & sessionTime != LocalTime.MIDNIGHT) {
+            return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(sessionTime) + " EDT";
+        }
+        return "TBD";
     }
 }

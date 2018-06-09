@@ -32,70 +32,45 @@
 
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center ">
                 <!--        <div class="col-md-5 p-lg-5 mx-auto my-5"> -->
-                          <table class="table table-striped table-hover" id="upcoming-sessions" width="90%">
-                            <caption>Upcoming Sessions</caption>
-                            <thead>
-                                <tr>
-                                  <th scope="col">Date</th>
-                                  <th scope="col">Time</th>
-                                  <th scope="col">Title</th>
-                                  <th scope="col">Product(s)</th>
-                                  <th scope="col">Presenter(s)</th>
-                                  <th scope="col">Register</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">05 Jun 2018</th>
-                                <td>TBA</td>
-                                <td>The future of Red Hat Virtualization</td>
-                                <td>RHV 4.x</td>
-                                <td>TBD</td>
-                                <td><button type="button" class="btn btn-secondary btn-sm">Register</button></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">07 Jun 2018</th>
-                                <td>TBA</td>
-                                <td>Getting to Know CloudForms</td>
-                                <td>CloudForms</td>
-                                <td>TBD</td>
-                                <td><button type="button" class="btn btn-secondary btn-sm">Register</button></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">12 Jun 2018</th>
-                                <td>TBA</td>
-                                <td>Red Hat Satellite Fundamentals</td>
-                                <td>Satellite 6.x</td>
-                                <td>TBD</td>
-                                <td><button type="button" class="btn btn-secondary btn-sm">Register</button></td>
-                              </tr>
-                              <tr>
-                                  <th scope="row">14 Jun 2018</th>
-                                  <td>TBA</td>
-                                  <td>Get Started with Cloud Native App Development</td>
-                                  <td>RHOAR, EAP, OpenShift</td>
-                                  <td>Derrick Kittler, Eric Getchel</td>
-                                  <td><button type="button" class="btn btn-secondary btn-sm">Register</button></td>
-                              </tr>   
-                              <tr>
-                                    <th scope="row">19 Jun 2018</th>
-                                    <td>3:00 EDT</td>
-                                    <td>API-Lead Agile Integration with Fuse and 3Scale</td>
-                                    <td>Fuse 7, 3scale</td>
-                                    <td>Christian Posta</td>
-                                    <td><button type="button" class="btn btn-secondary btn-sm">Register</button></td>
-                                  </tr>
-                             <tr>
-                                  <th scope="row">21 Jun 2018</th>
-                                  <td>10:00 EDT</td>
-                                  <td>A Developer's Perspective of OpenShift Container Platform</td>
-                                  <td>OpenShift, JBoss Developer Studio</td>
-                                  <td>Veer Munchandi</td>
-                                  <td><button type="button" class="btn btn-secondary btn-sm">Register</button></td>
-                               </tr>
-                            </tbody> 
-                          </table>          
-                <!--        </div> -->
+            <h1>Upcoming Sessions</h1>
+
+            <br/>
+            <h:dataTable value="#{theBusiness.sessions}" var="s" varStatus="sessionLoop"
+                         styleClass="table table-striped table-hover"
+                         id="upcoming-sessions-datatable"
+                         width="90%">
+                <h:column>
+                    <f:facet name="header">Date</f:facet>
+                    <h:outputText value="#{s.sessionDateStr}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Time</f:facet>
+                    <h:outputText value="#{s.sessionTimeStr}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    ${s.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Product(s)</f:facet>
+                    <ui:repeat var="ps" value="${s.getProductList()}" varStatus="loop">
+                        #{ps.name}#{loop.last ? '' : ', '}
+                    </ui:repeat>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Presenter(s)</f:facet>
+                    <ui:repeat var="person" value="${s.getPresenterList()}" varStatus="loop">
+                        #{person.firstName} #{person.lastName}#{loop.last ? '' : ', '}
+                    </ui:repeat>
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Register</f:facet>
+                    <button type="button" class="btn btn-secondary btn-sm">Register</button>
+                </h:column>
+            </h:dataTable>
+
+            <!--        </div> -->
                     </div>
                 
 

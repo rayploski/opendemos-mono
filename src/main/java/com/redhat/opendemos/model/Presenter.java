@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 @Entity
 @XmlRootElement
-@Table( name = "users")
+@Table( name = "presenters")
 public class Presenter implements Serializable {
 
     @Id
