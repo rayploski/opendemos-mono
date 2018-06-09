@@ -11,6 +11,7 @@ import java.util.Set;
 
 
 @Entity
+@Cacheable
 @XmlRootElement
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"), name = "products")
 public class Product implements Serializable {
