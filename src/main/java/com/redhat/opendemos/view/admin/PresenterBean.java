@@ -1,6 +1,6 @@
 package com.redhat.opendemos.view.admin;
 
-import com.redhat.opendemos.model.Product;
+import com.redhat.opendemos.model.Presenter;
 import com.redhat.opendemos.util.Loggable;
 
 import javax.annotation.Resource;
@@ -23,17 +23,16 @@ import java.util.List;
 import javax.faces.convert.Converter;
 
 
-
 @Named
 @Stateful
 @ConversationScoped
 @Loggable
-public class ProductBean
-{
+public class PresenterBean {
+
     private static final long serialVersionUID =1L;
 
     private Long id;
-    private Product product;
+    private Presenter presenter;
 
     @Inject
     private Conversation conversation;
@@ -48,8 +47,8 @@ public class ProductBean
 
     private int pageSize;
     private long count;
-    private List<Product> pageItems;
-    private Product example = new Product();
+    private List<Presenter> pageItems;
+    private Presenter example = new Presenter();
 
 
     // ------------------------------------------------------------------------
@@ -78,11 +77,11 @@ public class ProductBean
 
         if (this.id == null)
         {
-            this.product = this.example;
+            this.presenter = this.example;
         }
         else
         {
-            this.product = findById(getId());
+            this.presenter = findById(getId());
         }
     }
 
@@ -92,11 +91,11 @@ public class ProductBean
         try {
             if (this.id == null)
             {
-                this.em.persist(this.product);
+                this.em.persist(this.presenter);
                 return "search?faces-redirect=true";
             } else {
-                this.em.merge(this.product);
-                return "view?faces-redirect=true&id=" + this.product.getId();
+                this.em.merge(this.presenter);
+                return "view?faces-redirect=true&id=" + this.presenter.getId();
             }
         } catch (Exception e ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
@@ -108,7 +107,7 @@ public class ProductBean
         this.conversation.end();
 
         try {
-            Product deletableEntity = findById(getId());
+            Presenter deletableEntity = findById(getId());
 
             this.em.remove(deletableEntity);
             this.em.flush();
@@ -124,19 +123,30 @@ public class ProductBean
     // Getters and Setters
     // ------------------------------------------------------------------------
 
-    public Product findById(Long id) { return this.em.find(Product.class, id); }
+    public Presenter findById(Long id) { return this.em.find(Presenter.class, id); }
 
     public Long getId() { return id; }
 
     public void setId(Long id) { this.id = id; }
 
-    public Product getProduct() { return product; }
 
-    public void setProduct(Product product) { this.product = product; }
+    public Presenter getPresenter() {
+        return presenter;
+    }
 
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
 
+    public Presenter getExample() {
+        return example;
+    }
 
-    // ------------------------------------------------------------------------
+    public void setExample(Presenter example) {
+        this.example = example;
+    }
+
+// ------------------------------------------------------------------------
 
     // Pagination Support
     // ------------------------------------------------------------------------
@@ -154,46 +164,39 @@ public class ProductBean
 
     public void setCount(long count) { this.count = count; }
 
-    public List<Product> getPageItems() { return pageItems; }
+    public List<Presenter>getPageItems(){ return pageItems; }
 
-    public void setPageItems(List<Product> pageItems) { this.pageItems = pageItems; }
+    public void setPageItems(List<Presenter> pageItems) { this.pageItems = pageItems; }
 
-    public Product getExample() { return example; }
 
-    public void setExample(Product example) { this.example = example; }
-
-    public String search () {
-        this.pageSize = 0;
-         return null;
-    }
 
     public void paginate () {
         CriteriaBuilder builder = this.em.getCriteriaBuilder();
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
-        Root<Product> root = countCriteria.from(Product.class);
+        Root<Presenter> root = countCriteria.from(Presenter.class);
         countCriteria = countCriteria.select(builder.count(root)).where(getSearchPredicates(root));
         this.count = this.em.createQuery(countCriteria).getSingleResult();
-        CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
-        root = criteria.from(Product.class);
-        TypedQuery<Product> query = this.em.createQuery(criteria.select(root).where(getSearchPredicates(root)));
+        CriteriaQuery<Presenter> criteria = builder.createQuery(Presenter.class);
+        root = criteria.from(Presenter.class);
+        TypedQuery<Presenter> query = this.em.createQuery(criteria.select(root).where(getSearchPredicates(root)));
         this.pageItems = query.getResultList();
     }
 
 
-    public List<Product> getAll() {
-        CriteriaQuery<Product> criteriaQuery = this.em
-                .getCriteriaBuilder().createQuery(Product.class);
+    public List<Presenter> getAll() {
+        CriteriaQuery<Presenter> criteriaQuery = this.em
+                .getCriteriaBuilder().createQuery(Presenter.class);
         return this.em.createQuery(
-                criteriaQuery.select(criteriaQuery.from(Product.class))).getResultList();
+                criteriaQuery.select(criteriaQuery.from(Presenter.class))).getResultList();
     }
 
-    private Predicate[] getSearchPredicates(Root<Product> root) {
+    private Predicate[] getSearchPredicates(Root<Presenter> root) {
         CriteriaBuilder builder = this.em.getCriteriaBuilder();
         List<Predicate> predicatesList = new ArrayList<Predicate>();
-        String name = this.example.getName();
-        if (name != null && !"".equals(name))
+        String email = this.example.getEmail();
+        if (email != null && !"".equals(email))
         {
-            predicatesList.add(builder.like(builder.lower(root.<String> get("name")), '%' + name.toLowerCase() + '%'));
+            predicatesList.add(builder.like(builder.lower(root.<String> get("email")), '%' + email.toLowerCase() + '%'));
         }
 
 
@@ -201,9 +204,10 @@ public class ProductBean
     }
 
 
+
     public Converter getConverter(){
 
-        final ProductBean ejbProxy = this.sessionContext.getBusinessObject(ProductBean.class);
+        final PresenterBean ejbProxy = this.sessionContext.getBusinessObject(PresenterBean.class);
         return new Converter()
         {
 
@@ -220,21 +224,22 @@ public class ProductBean
                 if (value == null)
                     return "" +
                             "";
-                return String.valueOf(((Product) value).getId());
+                return String.valueOf(((Presenter) value).getId());
             }
         };
     }
 
-    private Product add = new Product();
+    private Presenter add = new Presenter();
 
-    public Product getAdd(){
-        return this.add;
+    public  Presenter getAdd(){
+         return this.add;
     }
 
-    public Product getAdded()
+    public Presenter getAdded()
     {
-        Product added = this.add;
-        this.add = new Product();
+        Presenter added = this.add;
+        this.add = new Presenter();
         return added;
     }
+
 }

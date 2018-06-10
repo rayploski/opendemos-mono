@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/resources/template/admin/templateCRUD.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value="#{presenterBean.page}"/>
+        <f:viewAction action="#{presenterBean.paginate}"/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Search Presenters"/>
+    <ui:define name="header">
+        Presenter
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search Presenters
+    </ui:define>
+
+    <ui:define name="main">
+        <h:form id="search" class="form-horizontal" role="form">
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="search">
+
+                    <h:panelGrid columns="7">
+                        <h:outputLabel for="presenterBeanExampleFirstName" value="First Name:"/>
+                        <h:panelGroup>
+                            <h:inputText id="presenterBeanExampleFirstName" maxLength="30" value="#{presenterBean.example.firstName}" class="form-control"/>
+                            <h:message for="presenterBeanExampleFirstName" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="presenterBeanExampleLastName" value="Last Name:"/>
+                        <h:panelGroup>
+                            <h:inputText id="presenterBeanExampleLastName" maxLength="30" value="#{presenterBean.example.lastName}" class="form-control"/>
+                            <h:message for="presenterBeanExampleLastName" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="presenterBeanExampleRedhatId" value="RH:"/>
+                        <h:panelGroup>
+                            <h:inputText id="presenterBeanExampleRedhatId" maxLength="30" value="#{presenterBean.example.redhatId}" class="form-control"/>
+                            <h:message for="presenterBeanExampleRedhatId" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputLabel for="presenterBeanExampleEmail" value="Email:"/>
+                        <h:panelGroup>
+                            <h:inputText id="presenterBeanExampleEmail" maxLength="30" value="#{presenterBean.example.email}" class="form-control"/>
+                            <h:message for="presenterBeanExampleEmail" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputLabel for="presenterBeanExampleTwitter" value="Twitter:"/>
+                        <h:panelGroup>
+                            <h:inputText id="presenterBeanExampleTwitter" maxLength="30" value="#{presenterBean.example.twitterHandle}" class="form-control"/>
+                            <h:message for="presenterBeanExampleTwitter" styleClass="error"/>
+                        </h:panelGroup>
+                        <h:outputText/>
+                        <h:outputText/>
+                    </h:panelGrid>
+                    <h:panelGroup styleClass="form-group">
+                        <h:commandLink value="Search" action="#{presenterBean.search}" styleClass="btn btn-primary"/>
+                        <h:commandLink value="Create New" action="#{presenterBean.create}" styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+            <h:dataTable id="presenterBeanPageItems" styleClass="table table-striped" value="#{presenterBean.pageItems}" var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/product/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemFirstName" value="#{_item.firstName}"/>
+                    </h:link>
+                </h:column>
+                                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    <h:link outcome="/admin/product/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemLastName" value="#{_item.lastName}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email"/>
+                    </f:facet>
+                    <h:link outcome="/admin/product/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemEmail" value="#{_item.email}"/>
+                    </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Red Hat ID"/>
+                    </f:facet>
+                    <h:link outcome="/admin/product/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="itemRH" value="#{_item.redhatId}"/>
+                    </h:link>
+                </h:column>
+           </h:dataTable>
+            <ui:include src="/resources/template/admin/paginator.xhtml">
+                <ui:param name="paginatorBean" value="#{presenterBean}"/>
+            </ui:include>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
