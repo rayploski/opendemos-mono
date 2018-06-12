@@ -21,14 +21,14 @@ public class Presenter implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 5, max = 512)
+    @Size(min = 2, max = 512)
     private String firstName;
 
     @NotNull
-    @Size(min = 5, max = 512)
+    @Size(min = 2, max = 512)
     private String lastName;
 
-    @Size(min = 3, max = 512)
+    @Size(min = 4, max = 512)
     @Email
     private String email;
 
@@ -38,7 +38,7 @@ public class Presenter implements Serializable {
     @Size(max = 128)
     private String twitterHandle;
 
-    @Size(max = 512, message = "The length of the image URL is limited to 512 characters")
+    @Size(max = 1024, message = "The length of the image URL is limited to 512 characters")
     private String imageUrl;
 
     @Size(max = 512, message = "Come On! Who is this person?  Title really has to be less than 512 characters.")

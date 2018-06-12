@@ -1,129 +1,105 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:forgeview="http://jboss.org/forge/view"
-                template="/resources/template/admin/templateCRUD.xhtml">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/template/admin/templateCRUD.xhtml">
 
-    <f:metadata>
-        <f:viewParam name="id" value="#{presenterBean.id}"/>
-        <f:viewAction action="#{presenterBean.retrieve}"/>
-    </f:metadata>
+	<f:metadata>
+		<f:viewParam name="id" value="#{presenterBean.id}" />
+		<f:viewAction action="#{presenterBean.retrieve}" />
+	</f:metadata>
 
-    <ui:param name="pageTitle" value="Create Presenter"/>
+	<ui:param name="pageTitle" value="Create Presenter" />
 
-    <ui:define name="header">
+	<ui:define name="header">
         Presenter
     </ui:define>
 
-    <ui:define name="subheader">
-        <c:choose>
-            <c:when test="#{!empty presenterBean.id}">
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test="#{!empty presenterBean.id}">
                 Edit existing Presenter
             </c:when>
-            <c:otherwise>
+			<c:otherwise>
                 Create a new Presenter
             </c:otherwise>
-        </c:choose>
-    </ui:define>
+		</c:choose>
+	</ui:define>
 
-    <ui:define name="main">
-        <h:form id="create" class="form-horizontal" role="form">
-            <h:panelGrid columns="3">
+	<ui:define name="main">
+		<h:form id="create" class="form-horizontal" role="form">
+			<h:outputLabel for="presenterBeanPresenterFirstName"
+				value="FirstName:" />
+			<h:inputText id="presenterBeanPresenterFirstName" maxLength="30"
+				required="true" value="#{presenterBean.presenter.firstName}"
+				class="form-control" />
+			<h:message for="presenterBeanPresenterFirstName" styleClass="error" />
+			<h:outputText value="" />
 
-                <h:outputLabel for="presenterBeanPresenterFirstName" value="FirstName:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterFirstName" maxLength="30" required="true" value="#{presenterBean.presenter.firstName}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterFirstName" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
+			<h:outputLabel for="presenterBeanPresenterLastName" value="LastName:" />
+			<h:inputText id="presenterBeanPresenterLastName" maxLength="30"
+				required="true" value="#{presenterBean.presenter.lastName}"
+				class="form-control" />
+			<h:message for="presenterBeanPresenterLastName" styleClass="error" />
+			<h:outputText value="" />
 
-                <h:outputLabel for="presenterBeanPresenterLastName" value="LastName:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterLastName" maxLength="30" required="true" value="#{presenterBean.presenter.lastName}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterLastName" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
-
-                <h:outputLabel for="presenterBeanPresenterEmail" value="Email:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterEmail" maxLength="30" required="true" value="#{presenterBean.presenter.email}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterEmail" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
-
-
-                <h:outputLabel for="presenterBeanPresenterRedhatId" value="Red Hat Kerberos ID:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterRedhatId" maxLength="30" required="true" value="#{presenterBean.presenter.redhatId}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterRedhatId" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
+			<h:outputLabel for="presenterBeanPresenterEmail" value="Email:" />
+			<h:inputText id="presenterBeanPresenterEmail" maxLength="30"
+				required="true" value="#{presenterBean.presenter.email}"
+				class="form-control" />
+			<h:message for="presenterBeanPresenterEmail" styleClass="error" />
+			<h:outputText value="" />
 
 
-                <h:outputLabel for="presenterBeanPresenterBio" value="Biography:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterBio"  required="true" value="#{presenterBean.presenter.biography}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterBio" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
+			<h:outputLabel for="presenterBeanPresenterRedhatId"
+				value="Red Hat Kerberos ID:" />
+			<h:inputText id="presenterBeanPresenterRedhatId" maxLength="30"
+				required="false" value="#{presenterBean.presenter.redhatId}"
+				class="form-control" />
+			<h:message for="presenterBeanPresenterRedhatId" styleClass="error" />
+
+			<h:outputLabel for="presenterBeanPresenterBio" value="Biography:" />
+			<h:inputText id="presenterBeanPresenterBio" required="false"
+				value="#{presenterBean.presenter.biography}" class="form-control" />
+			<h:message for="presenterBeanPresenterBio" styleClass="error" />
 
 
-                <h:outputLabel for="presenterBeanPresenterTwitter" value="Twitter Handle:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterTwitter" maxLength="30" required="true" value="#{presenterBean.presenter.twitterHandle}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterTwitter" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
+			<h:outputLabel for="presenterBeanPresenterTwitter"
+				value="Twitter Handle:" />
+			<h:inputText id="presenterBeanPresenterTwitter" maxLength="30"
+				required="false" value="#{presenterBean.presenter.twitterHandle}"
+				class="form-control" />
+			<h:message for="presenterBeanPresenterTwitter" styleClass="error" />
 
 
-                <h:outputLabel for="presenterBeanPresenterImage" value="Image URL:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterImage" maxLength="30" required="true" value="#{presenterBean.presenter.imageUrl}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterImage" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
+			<h:outputLabel for="presenterBeanPresenterImage" value="Image URL:" />
+			<h:inputText id="presenterBeanPresenterImage" maxLength="30"
+				required="false" value="#{presenterBean.presenter.imageUrl}"
+				class="form-control" />
+			<h:message for="presenterBeanPresenterImage" styleClass="error" />
 
 
-                <h:outputLabel for="presenterBeanPresenterEmail" value="Twitter Handle:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterTwitter" maxLength="30" required="true" value="#{presenterBean.presenter.twitterHandle}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterTwitter" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
-
-
-
-
-
-
-                <h:outputLabel for="presenterBeanPresenterDescription" value="Description:"/>
-                <h:panelGroup>
-                    <h:inputText id="presenterBeanPresenterDescription" value="#{presenterBean.presenter.description}" class="form-control"/>
-                    <h:message for="presenterBeanPresenterDescription" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText/>
-            </h:panelGrid>
-
-            <h:panelGroup styleClass="form-group">
-                <h:commandLink value="Save" action="#{presenterBean.update}" styleClass="btn btn-primary"/>
-                <c:choose>
-                    <c:when test="#{!empty presenterBean.id}">
-                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
-                            <f:param name="id" value="#{presenterBean.id}"/>
-                        </h:link>
-                        <h:commandLink value="Delete" action="#{presenterBean.delete}" styleClass="btn btn-primary"/>
-                    </c:when>
-                    <c:otherwise>
-                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
-                    </c:otherwise>
-                </c:choose>
-            </h:panelGroup>
-        </h:form>
-    </ui:define>
+			<h:commandLink value="Save" action="#{presenterBean.update}"
+				styleClass="btn btn-primary" />
+			<c:choose>
+				<c:when test="#{!empty presenterBean.id}">
+					<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+						<f:param name="id" value="#{presenterBean.id}" />
+					</h:link>
+					<h:commandLink value="Delete" action="#{presenterBean.delete}"
+						styleClass="btn btn-primary" />
+				</c:when>
+				<c:otherwise>
+					<h:link value="Cancel" outcome="search"
+						styleClass="btn btn-primary" />
+				</c:otherwise>
+			</c:choose>
+		</h:form>
+	</ui:define>
 
 </ui:composition>
 

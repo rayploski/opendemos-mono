@@ -21,55 +21,38 @@
     </ui:define>
 
     <ui:define name="main">
-        <h:form id="search" class="form-horizontal" role="form">
+        <h:form id="search" >
             <f:validateBean disabled="true">
-                <h:panelGroup styleClass="search">
-
-                    <h:panelGrid columns="7">
-                        <h:outputLabel for="presenterBeanExampleFirstName" value="First Name:"/>
-                        <h:panelGroup>
-                            <h:inputText id="presenterBeanExampleFirstName" maxLength="30" value="#{presenterBean.example.firstName}" class="form-control"/>
-                            <h:message for="presenterBeanExampleFirstName" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputText/>
-                        <h:outputLabel for="presenterBeanExampleLastName" value="Last Name:"/>
-                        <h:panelGroup>
-                            <h:inputText id="presenterBeanExampleLastName" maxLength="30" value="#{presenterBean.example.lastName}" class="form-control"/>
-                            <h:message for="presenterBeanExampleLastName" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputText/>
-                        <h:outputLabel for="presenterBeanExampleRedhatId" value="RH:"/>
-                        <h:panelGroup>
-                            <h:inputText id="presenterBeanExampleRedhatId" maxLength="30" value="#{presenterBean.example.redhatId}" class="form-control"/>
-                            <h:message for="presenterBeanExampleRedhatId" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputLabel for="presenterBeanExampleEmail" value="Email:"/>
-                        <h:panelGroup>
-                            <h:inputText id="presenterBeanExampleEmail" maxLength="30" value="#{presenterBean.example.email}" class="form-control"/>
-                            <h:message for="presenterBeanExampleEmail" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputText/>
-                        <h:outputLabel for="presenterBeanExampleTwitter" value="Twitter:"/>
-                        <h:panelGroup>
-                            <h:inputText id="presenterBeanExampleTwitter" maxLength="30" value="#{presenterBean.example.twitterHandle}" class="form-control"/>
-                            <h:message for="presenterBeanExampleTwitter" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputText/>
-                        <h:outputText/>
-                    </h:panelGrid>
-                    <h:panelGroup styleClass="form-group">
-                        <h:commandLink value="Search" action="#{presenterBean.search}" styleClass="btn btn-primary"/>
-                        <h:commandLink value="Create New" action="#{presenterBean.create}" styleClass="btn btn-primary"/>
-                    </h:panelGroup>
-                </h:panelGroup>
-            </f:validateBean>
+	            <h:outputLabel for="presenterBeanExampleFirstName" value="First Name:"/>
+	                <h:inputText id="presenterBeanExampleFirstName" maxLength="30" value="#{presenterBean.example.firstName}" class="form-control"/>
+	                <h:message for="presenterBeanExampleFirstName" styleClass="error"/>
+	            <h:outputText/>
+	            <h:outputLabel for="presenterBeanExampleLastName" value="Last Name:"/>
+	                <h:inputText id="presenterBeanExampleLastName" maxLength="30" value="#{presenterBean.example.lastName}" class="form-control"/>
+	                <h:message for="presenterBeanExampleLastName" styleClass="error"/>
+	            <h:outputText/>
+	            <h:outputLabel for="presenterBeanExampleRedhatId" value="Red Hat Kerberos ID:"/>
+	                <h:inputText id="presenterBeanExampleRedhatId" maxLength="30" value="#{presenterBean.example.redhatId}" class="form-control"/>
+	                <h:message for="presenterBeanExampleRedhatId" styleClass="error"/>
+	            <h:outputLabel for="presenterBeanExampleEmail" value="Email:"/>
+	                <h:inputText id="presenterBeanExampleEmail" maxLength="30" value="#{presenterBean.example.email}" class="form-control"/>
+	                <h:message for="presenterBeanExampleEmail" styleClass="error"/>
+	            <h:outputText/>
+	            <h:outputLabel for="presenterBeanExampleTwitter" value="Twitter:"/>
+	                <h:inputText id="presenterBeanExampleTwitter" maxLength="30" value="#{presenterBean.example.twitterHandle}" class="form-control"/>
+	                <h:message for="presenterBeanExampleTwitter" styleClass="error"/>
+	            <h:outputText/>
+	            <h:outputText/>
+	            <h:commandLink value="Search" action="#{presenterBean.search}" styleClass="btn btn-primary"/>
+	            <h:commandLink value="Create New" action="#{presenterBean.create}" styleClass="btn btn-primary"/>
+             </f:validateBean>
 
             <h:dataTable id="presenterBeanPageItems" styleClass="table table-striped" value="#{presenterBean.pageItems}" var="_item">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="First Name"/>
                     </f:facet>
-                    <h:link outcome="/admin/product/view">
+                    <h:link outcome="/admin/presenter/view">
                         <f:param name="id" value="#{_item.id}"/>
                         <h:outputText id="itemFirstName" value="#{_item.firstName}"/>
                     </h:link>
@@ -78,7 +61,7 @@
                     <f:facet name="header">
                         <h:outputText value="Last Name"/>
                     </f:facet>
-                    <h:link outcome="/admin/product/view">
+                    <h:link outcome="/admin/presenter/view">
                         <f:param name="id" value="#{_item.id}"/>
                         <h:outputText id="itemLastName" value="#{_item.lastName}"/>
                     </h:link>
@@ -87,7 +70,7 @@
                     <f:facet name="header">
                         <h:outputText value="Email"/>
                     </f:facet>
-                    <h:link outcome="/admin/product/view">
+                    <h:link outcome="/admin/presenter/view">
                         <f:param name="id" value="#{_item.id}"/>
                         <h:outputText id="itemEmail" value="#{_item.email}"/>
                     </h:link>
@@ -96,7 +79,7 @@
                     <f:facet name="header">
                         <h:outputText value="Red Hat ID"/>
                     </f:facet>
-                    <h:link outcome="/admin/product/view">
+                    <h:link outcome="/admin/presenter/view">
                         <f:param name="id" value="#{_item.id}"/>
                         <h:outputText id="itemRH" value="#{_item.redhatId}"/>
                     </h:link>
