@@ -6,24 +6,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 
 @FacesConverter("ltconv")
 public class LocalTimeConverter implements Converter {
+    private static final DateTimeFormatter timeDTF = DateTimeFormatter.ofPattern("HH:mm").withLocale(Locale.ENGLISH);
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
+
         if (value != null && !"".equals(value)){
-
-            String[] output = value.split(":");
-
-            if (output.length == 2)
-            {
-                int hour = Integer.parseInt(output[0]);
-                int minute = Integer.parseInt(output[1]);
-                return LocalTime.of(hour,minute);
-            } else return null;
+            LocalTime localTime = LocalTime.parse(value, timeDTF);
+            return localTime;
         }
+
         return null;
     }
 
@@ -31,12 +30,7 @@ public class LocalTimeConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value != null){
             LocalTime localTime = (LocalTime)value;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(localTime.getHour());
-            stringBuilder.append(":");
-            stringBuilder.append(localTime.getMinute());
-            return stringBuilder.toString();
-
+            return localTime.toString();
         }
 
         return null;
