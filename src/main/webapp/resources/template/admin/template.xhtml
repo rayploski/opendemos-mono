@@ -23,10 +23,10 @@
 		<h:outputStylesheet name="common-style.css" library="css" />
 		<h:outputStylesheet name="dashboard.css" library="css" />
 		<h:outputStylesheet library="webjars"
-			name="bootstrap/4.1.0/css/bootstrap.min.css" />
+			name="bootstrap/4.1.1/css/bootstrap-jsf.css" />
 		<h:outputStylesheet library="webjars"
 			name="font-awesome/5.0.13/web-fonts-with-css/css/fontawesome-all-jsf.css" />
-
+		
 	</h:head>
 
 	<!--BODY-->
@@ -152,21 +152,18 @@
                 ================================================== -->
 		<!-- 	Placed at the end of the document so the pages load faster -->
 		<h:outputScript library="webjars"
-			name="jquery/3.3.1/dist/jquery.min.js" />
+			name="jquery/3.3.1-1/jquery.min.js" />
 		<h:outputScript library="webjars"
 			name="popper.js/1.14.1/umd/popper.js" />
 		<h:outputScript library="webjars"
-			name="bootstrap/4.1.0/js/bootstrap.js" />
-		<h:outputScript library="webjars"
-			name="bootstrap/4.1.0/webjars-requirejs.js" />
-		<h:outputScript target="head">
-            // Add the $() function
-            $ = jQuery;
-            $(document).ready(function () {
-            jQuery.noConflict();
-            });
+			name="bootstrap/4.1.1/js/bootstrap.js" />
+    	<h:outputScript target="head">
+    	        // Add the $() function
+	            $ = jQuery;
+        		$(document).ready(function () {
+            		jQuery.noConflict();
+            	});
         </h:outputScript>
-
 	</h:body>
 </f:view>
 </html>
