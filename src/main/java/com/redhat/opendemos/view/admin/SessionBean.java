@@ -1,7 +1,10 @@
 package com.redhat.opendemos.view.admin;
 
 import com.redhat.opendemos.model.Presenter;
+import com.redhat.opendemos.model.Product;
 import com.redhat.opendemos.model.Session;
+import com.redhat.opendemos.service.PresenterService;
+import com.redhat.opendemos.service.ProductService;
 import com.redhat.opendemos.util.Loggable;
 
 import javax.annotation.Resource;
@@ -20,6 +23,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.redhat.opendemos.view.AbstractBean;
 import org.primefaces.event.SelectEvent;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +37,7 @@ import javax.faces.convert.Converter;
 @Stateful
 @ConversationScoped
 @Loggable
-public class SessionBean {
+public class SessionBean extends AbstractBean {
     private static final long serialVersionUID =1L;
 
     private Long id;
@@ -41,6 +45,13 @@ public class SessionBean {
 
     @Inject
     private Conversation conversation;
+
+
+    @Inject
+    private ProductService productService;
+
+    @Inject
+    private PresenterService presenterService;
 
     @PersistenceContext(name="primary", type = PersistenceContextType.EXTENDED)
     private EntityManager em;
@@ -109,6 +120,50 @@ public class SessionBean {
             return null;
         }
     }
+
+    public String addProduct(){
+
+        Long productId = getParamId("productId");
+        Product product = productService.findById( productId);
+
+        if (product != null  && !session.getProducts().contains(product))
+        {
+                this.session.getProducts().add(product);
+        }
+        return update();
+    }
+
+    public String removeProduct() {
+        Long productId = getParamId("productId");
+        Product product = productService.findById( productId);
+
+        if (product != null & session.getProducts().contains(product)){
+            this.session.getProducts().remove(product);
+        }
+        return update();
+    }
+
+    public String addPresenter(){
+        Long presenterId = getParamId("presenterId");
+        Presenter presenter = presenterService.findById(presenterId);
+
+        if (presenter != null  && !session.getPresenters().contains(presenter)){
+            this.session.getPresenters().add(presenter);
+        }
+        return update();
+    }
+
+
+    public String removePresenter(){
+        Long presenterId = getParamId("presenterId");
+        Presenter presenter = presenterService.findById(presenterId);
+
+        if (presenter != null  && session.getPresenters().contains(presenter)){
+            this.session.getPresenters().remove(presenter);
+        }
+        return update();
+    }
+
     
     public String delete() {
         this.conversation.end();
@@ -195,7 +250,7 @@ public class SessionBean {
         LocalDate sessionDate = this.example.getSessionDate();
         if (sessionDate != null)
         {
-        	//TODO: come up with predicate logic.
+        	//TODO: update predicate logic.
         	//            predicatesList.add(builder.like(builder.lower(root.<String> get("email")), '%' + email.toLowerCase() + '%'));
         }
 
