@@ -45,6 +45,7 @@
 	            <h:commandLink value="Create New" action="#{sessionBean.create}" styleClass="btn btn-primary"/>
              </f:validateBean>
 
+
             <h:dataTable id="sessionBeanPageItems" styleClass="table table-striped" value="#{sessionBean.pageItems}" var="_item">
                 <h:column>
                     <f:facet name="header">
@@ -70,8 +71,23 @@
                     </f:facet>
                     <h:link outcome="/admin/session/view">
                         <f:param name="id" value="#{_item.id}"/>
-                        <h:outputText id="itemEmail" value="#{_item.title}"/>
+                        <h:outputText id="itemTitle" value="#{_item.title}"/>
                     </h:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Product(s)"/>
+                        <ui:repeat var="ps" value="${_item.getProductList()}" varStatus="loop">
+                            <h:outputText value="${ps.name}${loop.last ? '' : ', '}" />
+                        </ui:repeat>
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Presenter(s)</f:facet>
+                    <ui:repeat var="person" value="#{_item.getPresenterList()}" varStatus="loop">
+                        #{person.firstName} #{person.lastName}#{loop.last ? '' : ', '}
+                    </ui:repeat>
+
                 </h:column>
            </h:dataTable>
             <ui:include src="/resources/template/admin/paginator.xhtml">
