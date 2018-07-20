@@ -58,11 +58,9 @@
                     <f:facet name="header">
                         <h:outputText value="Description"/>
                     </f:facet>
-                    <h:link outcome="/admin/product/view">
-                        <f:param name="id" value="#{_item.id}"/>
-                        <h:outputText id="description" 
-                        	value="#{_item.description.length() gt 50 ? _item.description.substring(0,47).concat('...') : _item.description}"/>
-                    </h:link>
+                    <h:outputText id="description"
+                        value="#{_item.description.length() gt 50 ? _item.description.substring(0,47).concat('...') : _item.description}"/>
+
                 </h:column>
             </h:dataTable>
             <ui:include src="/resources/template/admin/paginator.xhtml">
