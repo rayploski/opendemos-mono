@@ -31,23 +31,16 @@
     </ui:define>
 
     <ui:define name="main">
-        <h:form id="create" class="form-horizontal" role="form">
-            <h:panelGrid columns="3">
+        <h:form id="create">
                 <h:outputLabel for="productBeanProductName" value="Name:"/>
-                <h:panelGroup>
-                    <h:inputText id="productBeanProductName" maxLength="30" required="true" value="#{productBean.product.name}" class="form-control"/>
+                    <h:inputText id="productBeanProductName" maxLength="30" required="true" value="#{productBean.product.name}" class="form-control" styleClass="form-control"/>
                     <h:message for="productBeanProductName" styleClass="error"/>
-                </h:panelGroup>
                 <h:outputText value="*"/>
                 <h:outputLabel for="productBeanProductDescription" value="Description:"/>
-                <h:panelGroup>
-                    <h:inputText id="productBeanProductDescription" value="#{productBean.product.description}" class="form-control"/>
+                    <h:inputTextarea id="productBeanProductDescription" rows="10" cols="20" value="#{productBean.product.description}" class="form-control" styleClass="form-control"/>
                     <h:message for="productBeanProductDescription" styleClass="error"/>
-                </h:panelGroup>
                 <h:outputText/>
-            </h:panelGrid>
 
-            <h:panelGroup styleClass="form-group">
                 <h:commandLink value="Save" action="#{productBean.update}" styleClass="btn btn-primary"/>
                 <c:choose>
                     <c:when test="#{!empty productBean.id}">
@@ -60,7 +53,6 @@
                         <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
                     </c:otherwise>
                 </c:choose>
-            </h:panelGroup>
         </h:form>
     </ui:define>
 

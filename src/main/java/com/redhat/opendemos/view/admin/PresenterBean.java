@@ -194,6 +194,7 @@ public class PresenterBean {
         CriteriaBuilder builder = this.em.getCriteriaBuilder();
         List<Predicate> predicatesList = new ArrayList<Predicate>();
         String email = this.example.getEmail();
+        //TODO:  Add more predicates
         if (email != null && !"".equals(email))
         {
             predicatesList.add(builder.like(builder.lower(root.<String> get("email")), '%' + email.toLowerCase() + '%'));

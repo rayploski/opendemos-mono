@@ -22,7 +22,6 @@
     </ui:define>
 
     <ui:define name="main">
-        <h:panelGrid columns="3">
             <h:outputLabel for="productBeanProductName" value="Name:"/>
             <h:outputText id="productBeanProductName" value="#{productBean.product.name}"/>
             <h:outputText/>
@@ -30,7 +29,6 @@
             <h:outputText id="productBeanProductDescription" value="#{productBean.product.description}"/>
             <h:outputText/>
             <h:outputText/>
-        </h:panelGrid>
 
         <div class="form-group">
             <h:link value="View All" outcome="search" styleClass="btn btn-primary"/>

@@ -32,11 +32,15 @@ public class Session implements Serializable {
     @Column (name = "session_time")
     private LocalTime sessionTime;
 
-    @ManyToMany
+
+    @Column (name="session_url")
+    private String url;
+
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable (name="session_product")
     private Set<Product> products = new HashSet<Product>();
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable (name="session_presenters")
     private Set<Presenter> presenters = new HashSet<Presenter>();
 
@@ -55,6 +59,11 @@ public class Session implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
+
+    public String getUrl() { return url; }
+
+    public void setUrl(String url) { this.url = url; }
 
     public String getDescription() {
         return description;

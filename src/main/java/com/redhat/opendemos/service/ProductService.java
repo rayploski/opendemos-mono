@@ -56,14 +56,6 @@ ProductService extends AbstractService<Product> implements Serializable
       {
          predicatesList.add(builder.like(builder.lower(root.<String> get("description")), '%' + description.toLowerCase() + '%'));
       }
-      
-      /*
-      Category category = example.getCategory();
-      if (category != null)
-      {
-         predicatesList.add(builder.equal(root.get("category"), category));
-      }
-      */
 
       return predicatesList.toArray(new Predicate[predicatesList.size()]);
    }

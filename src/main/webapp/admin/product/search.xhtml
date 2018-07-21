@@ -4,6 +4,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 template="/resources/template/admin/templateCRUD.xhtml">
 
     <f:metadata>
@@ -11,40 +12,36 @@
         <f:viewAction action="#{productBean.paginate}"/>
     </f:metadata>
 
-    <ui:param name="pageTitle" value="Search Product entities"/>
+    <ui:param name="pageTitle" value="Search Products"/>
 
     <ui:define name="header">
         Product
     </ui:define>
 
     <ui:define name="subheader">
-        Search Product entities
+        Search Products
     </ui:define>
 
     <ui:define name="main">
-        <h:form id="search" class="form-horizontal" role="form">
-            <f:validateBean disabled="true">
-                <h:panelGroup styleClass="search">
+        <h:form id="search" role="form">
 
-                    <h:panelGrid columns="3">
-                        <h:outputLabel for="productBeanExampleName" value="Name:"/>
-                        <h:panelGroup>
-                            <h:inputText id="productBeanExampleName" maxLength="30" value="#{productBean.example.name}" class="form-control"/>
-                            <h:message for="productBeanExampleName" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputText/>
-                        <h:outputLabel for="productBeanExampleDescription" value="Description:"/>
-                        <h:panelGroup>
-                            <h:inputText id="productBeanExampleDescription" value="#{productBean.example.description}" class="form-control"/>
-                            <h:message for="productBeanExampleDescription" styleClass="error"/>
-                        </h:panelGroup>
-                        <h:outputText/>
-                    </h:panelGrid>
-                    <h:panelGroup styleClass="form-group">
-                        <h:commandLink value="Search" action="#{productBean.search}" styleClass="btn btn-primary"/>
-                        <h:commandLink value="Create New" action="#{productBean.create}" styleClass="btn btn-primary"/>
-                    </h:panelGroup>
-                </h:panelGroup>
+            <f:validateBean disabled="true">
+
+	            <h:outputLabel for="productBeanExampleName" value="Name:"/>
+	
+	            <h:inputText id="productBeanExampleName" maxLength="30" value="#{productBean.example.name}" class="form-control"/>
+	            <h:message for="productBeanExampleName" styleClass="error"/>
+	
+	            <h:outputText/>
+	
+	            <h:outputLabel for="productBeanExampleDescription" value="Description:"/>
+	            <h:inputTextarea row="3" id="productBeanExampleDescription" value="#{productBean.example.description}" class="form-control"/>
+	            <h:outputText/>
+	
+	
+	            <h:commandLink value="Search" action="#{productBean.search}" styleClass="btn btn-primary"/>
+	            <h:commandLink value="Create New" action="#{productBean.create}" styleClass="btn btn-primary"/>
+
             </f:validateBean>
 
             <h:dataTable id="productBeanPageItems" styleClass="table table-striped" value="#{productBean.pageItems}" var="_item">
@@ -61,10 +58,9 @@
                     <f:facet name="header">
                         <h:outputText value="Description"/>
                     </f:facet>
-                    <h:link outcome="/admin/product/view">
-                        <f:param name="id" value="#{_item.id}"/>
-                        <h:outputText id="description" value="#{_item.description}"/>
-                    </h:link>
+                    <h:outputText id="description"
+                        value="#{_item.description.length() gt 50 ? _item.description.substring(0,47).concat('...') : _item.description}"/>
+
                 </h:column>
             </h:dataTable>
             <ui:include src="/resources/template/admin/paginator.xhtml">
