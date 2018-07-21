@@ -33,4 +33,4 @@ projectFilesBackup*
 *.zip
 *.gzprojectFilesBackup*
 .settings
-.project
+.tern-project
